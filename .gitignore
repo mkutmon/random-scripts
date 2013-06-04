@@ -1,6 +1,8 @@
+.*
 *.class
+OnttagUpdater/bin/
+OnttagUpdater/.*
 
 # Package Files #
-*.jar
 *.war
 *.ear
