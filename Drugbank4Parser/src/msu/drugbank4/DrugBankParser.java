@@ -13,6 +13,13 @@ import org.jdom.JDOMException;
 import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 
+/**
+ * Download XML file from Drugbank (http://www.drugbank.ca/downloads)
+ * Version 4
+ * 
+ * @author msu
+ *
+ */
 public class DrugBankParser {
 
 	private Namespace nsDrugBank;
@@ -21,6 +28,10 @@ public class DrugBankParser {
 		nsDrugBank = Namespace.getNamespace("http://www.drugbank.ca");
 	}
 	
+	/**
+	 * return a set of drugs
+	 * DrugModel contains also the list of targets
+	 */
 	public Set<DrugModel> parse(File drugBankXml) throws JDOMException, IOException {
 		SAXBuilder builder = new SAXBuilder();
 
@@ -53,6 +64,9 @@ public class DrugBankParser {
 		return drugs;
 	}
 	
+	/**
+	 * reads targets for current drug
+	 */
 	private Set<TargetModel> getTargets(Element drug) {
 		Set<TargetModel> set = new HashSet<TargetModel>();
 		Element targets = drug.getChild("targets", nsDrugBank);
@@ -92,6 +106,9 @@ public class DrugBankParser {
 		return set;
 	}
 	
+	/**
+	 * reads categories for current drug
+	 */
 	private Set<String> getCategories(Element drug) {
 		Set<String> set = new HashSet<String>();
 		Element categories = drug.getChild("categories", nsDrugBank);
@@ -105,6 +122,9 @@ public class DrugBankParser {
 		return set;
 	}
 	
+	/**
+	 * reads groups for current drug
+	 */
 	private Set<String> getGroups(Element drug) {
 		Set<String> set = new HashSet<String>();
 		Element groups = drug.getChild("groups", nsDrugBank);
@@ -117,6 +137,9 @@ public class DrugBankParser {
 		return set;
 	}
 	
+	/**
+	 * reads inchikey for current drug
+	 */
 	private String getInchiKey(Element drug) {
 		Element props = drug.getChild("calculated-properties", nsDrugBank);
 		if(props != null) {
