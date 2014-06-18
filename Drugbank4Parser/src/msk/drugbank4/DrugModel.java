@@ -1,4 +1,4 @@
-package msuku.drugbank4;
+package msk.drugbank4;
 
 
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * class containing information about drugs
- * @author msu
+ * @author msk
  *
  */
 public class DrugModel {

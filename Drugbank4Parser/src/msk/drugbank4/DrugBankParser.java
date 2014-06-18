@@ -1,4 +1,4 @@
-package msuku.drugbank4;
+package msk.drugbank4;
 
 
 import java.io.File;
@@ -18,7 +18,7 @@ import org.jdom.input.SAXBuilder;
  * Version 4
  * for version 4.1 at least 2g memory required
  * 
- * @author msuku
+ * @author msk
  *
  */
 public class DrugBankParser {
