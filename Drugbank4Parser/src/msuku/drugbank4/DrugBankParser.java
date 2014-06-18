@@ -16,6 +16,7 @@ import org.jdom.input.SAXBuilder;
 /**
  * Download XML file from Drugbank (http://www.drugbank.ca/downloads)
  * Version 4
+ * for version 4.1 at least 2g memory required
  * 
  * @author msuku
  *
