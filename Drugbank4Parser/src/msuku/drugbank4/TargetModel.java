@@ -1,9 +1,9 @@
-package msu.drugbank4;
+package msuku.drugbank4;
 
 
 /**
  * class containing information about targets
- * @author msu
+ * @author msuku
  *
  */
 public class TargetModel {

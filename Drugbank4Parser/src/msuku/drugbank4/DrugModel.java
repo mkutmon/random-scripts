@@ -1,4 +1,4 @@
-package msu.drugbank4;
+package msuku.drugbank4;
 
 
 import java.util.HashSet;

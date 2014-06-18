@@ -1,4 +1,4 @@
-package msu.drugbank4;
+package msuku.drugbank4;
 
 
 import java.io.File;
@@ -17,7 +17,7 @@ import org.jdom.input.SAXBuilder;
  * Download XML file from Drugbank (http://www.drugbank.ca/downloads)
  * Version 4
  * 
- * @author msu
+ * @author msuku
  *
  */
 public class DrugBankParser {
