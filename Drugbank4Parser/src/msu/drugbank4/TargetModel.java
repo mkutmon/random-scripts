@@ -1,9 +1,11 @@
 package msu.drugbank4;
 
 
-import java.util.HashSet;
-import java.util.Set;
-
+/**
+ * class containing information about targets
+ * @author msu
+ *
+ */
 public class TargetModel {
 
 	private String uniprotId = "";
@@ -11,11 +13,6 @@ public class TargetModel {
 	private String geneName = "";
 	private String drugbankId = "";
 	private String organism = "";
-	private Set<String> xrefs;
-	
-	public TargetModel() {
-		xrefs = new HashSet<String>();
-	}
 
 	public String getUniprotId() {
 		return uniprotId;
@@ -55,10 +52,6 @@ public class TargetModel {
 
 	public void setOrganism(String organism) {
 		this.organism = organism;
-	}
-
-	public Set<String> getXrefs() {
-		return xrefs;
 	}
 	
 	@Override

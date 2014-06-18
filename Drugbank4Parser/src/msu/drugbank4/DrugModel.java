@@ -4,6 +4,11 @@ package msu.drugbank4;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * class containing information about drugs
+ * @author msu
+ *
+ */
 public class DrugModel {
 	private String drugbankID = "";
 	private String name = "";
