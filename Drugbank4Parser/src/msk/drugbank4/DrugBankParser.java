@@ -74,16 +74,21 @@ public class DrugBankParser {
 		if(targets != null) {
 			List<Element> targetList = targets.getChildren("target", nsDrugBank);
 			for(Element target : targetList) {
+				TargetModel targetModel = new TargetModel();
+				
 				Element targetId = target.getChild("id", nsDrugBank);
+				targetModel.setDrugbankId(targetId.getValue());
+				
 				Element targetName = target.getChild("name", nsDrugBank);
+				targetModel.setName(targetName.getValue());
+				
 				Element targetOrganism = target.getChild("organism", nsDrugBank);
-
+				targetModel.setOrganism(targetOrganism.getValue());
+				
 				Element polypeptide = target.getChild("polypeptide", nsDrugBank);
-				String geneName = "";
-				String uniprotId = "";
 				if(polypeptide != null) {
-					Element polypeptideGeneName = polypeptide.getChild("gene-name", nsDrugBank);
-					geneName = polypeptideGeneName.getValue();			
+					Element polypeptideGeneName = polypeptide.getChild("gene-name", nsDrugBank);	
+					targetModel.setGeneName(polypeptideGeneName.getValue());
 					
 					Element xrefs = polypeptide.getChild("external-identifiers", nsDrugBank);
 					List<Element> xrefList = xrefs.getChildren("external-identifier", nsDrugBank);
@@ -91,16 +96,10 @@ public class DrugBankParser {
 						Element res = xref.getChild("resource", nsDrugBank);
 						if(res.getValue().equals("UniProtKB")) {
 							Element uniprot = xref.getChild("identifier", nsDrugBank);
-							uniprotId = uniprot.getValue();
+							targetModel.setUniprotId(uniprot.getValue());
 						}
 					}
 				}
-				TargetModel targetModel = new TargetModel();
-				targetModel.setDrugbankId(targetId.getValue());
-				targetModel.setGeneName(geneName);
-				targetModel.setName(targetName.getValue());
-				targetModel.setOrganism(targetOrganism.getValue());
-				targetModel.setUniprotId(uniprotId);
 				set.add(targetModel);
 			}
 		}
