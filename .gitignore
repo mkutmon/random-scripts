@@ -1,9 +1,7 @@
-.*
 *.class
 OnttagUpdater/bin/
 OnttagUpdater/.*
 OnttagUpdater/output.gpml
-
-# Package Files #
-*.war
-*.ear
+.metadata
+.recommenders
+.settings
