@@ -1,0 +1,22 @@
+----------------------------------------------------------------
+2015-03-20 07:47:13.842 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-014c-3626-7aaa-0000070d0518
+on database directory jar:(/home/msk/Data/BridgeDb/Hs_Derby_20130701.bridge)database in READ ONLY mode 
+
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+2015-03-20 07:47:14.821 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 582f8014-014c-3626-7aaa-0000070d0518
+on database directory /tmp/derby33964.tmp/database  
+
+Database Class Loader started - derby.database.classpath=''
+
+2015-03-20 07:47:16.730 GMT:
+Shutting down instance 582f8014-014c-3626-7aaa-0000070d0518
+----------------------------------------------------------------
+----------------------------------------------------------------
+2015-03-20 07:47:16.785 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 3988c0be-014c-3626-7aaa-0000070d0518
+on database directory jar:(/home/msk/example.txt.pgex)database in READ ONLY mode 
+
+Database Class Loader started - derby.database.classpath=''
