@@ -56,8 +56,13 @@ public class PathwayGeneAssociations {
 
 	public static void main(String[] args) throws Exception {
 		Organism org = Organism.HomoSapiens;
+		
+		// use Ensembl identifiers
 		String sysCode = "En";
+		
+		// get labels from HGNC
 		String label = "H";
+		
 		File bridgeDb = new File("/home/martina/Data/BridgeDb/Hs_Derby_20130701.bridge");
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
