@@ -21,9 +21,11 @@ import java.io.FileWriter;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,6 +38,7 @@ import org.bridgedb.bio.Organism;
 import org.pathvisio.core.model.Pathway;
 import org.pathvisio.wikipathways.webservice.WSCurationTag;
 import org.pathvisio.wikipathways.webservice.WSPathway;
+import org.pathvisio.wikipathways.webservice.WSPathwayInfo;
 import org.wikipathways.client.WikiPathwaysClient;
 
 /**
@@ -81,35 +84,45 @@ public class PathwayGeneAssociations {
 		
 		// id, label
 		Map<String, String> map = new HashMap<String, String>();
-		
 		WikiPathwaysClient client = new WikiPathwaysClient(new URL("http://webservice.wikipathways.org"));
+		
+		for(WSPathwayInfo info : PathwayGeneAssociations.getCuratedPathways(org, client)) {
+			WSPathway wsp = client.getPathway(info.getId());
+			Pathway p = WikiPathwaysClient.toPathway(wsp);
+			Set<String> ids = new HashSet<String>();
+			for(Xref x : p.getDataNodeXrefs()) {
+				Set<Xref> res = mapper.mapID(x, dsEn);
+				for(Xref r : res) {
+					ids.add(r.getId());
+					String la = "";
+					if(!map.containsKey(r.getId())) {
+						Set<Xref> res2 = mapper.mapID(r, dsHGNC);
+						if(res2.size() > 0) {
+							la = res2.iterator().next().getId();
+							map.put(r.getId(), la);
+						}
+					} else {
+						la = map.get(r.getId());
+					}
+				}
+			}
+			for(String id : ids) {
+				writer.write(info.getId() + "\t" + info.getName() + "\t" + id + "\t" + ((map.get(id) == null) ? "" : map.get(id)) + "\n");
+			}
+		}
+
+		writer.close();
+	}
+	
+	public static List<WSPathwayInfo> getCuratedPathways(Organism org, WikiPathwaysClient client) throws Exception {
+		List<WSPathwayInfo> list = new ArrayList<WSPathwayInfo>();
+		
 		WSCurationTag [] tags = client.getCurationTagsByName("Curation:AnalysisCollection");
 		for(WSCurationTag t : tags) {
 			if(t.getPathway().getSpecies().equals(org.latinName())) {
-				WSPathway wsp = client.getPathway(t.getPathway().getId());
-				Pathway p = WikiPathwaysClient.toPathway(wsp);
-				Set<String> ids = new HashSet<String>();
-				for(Xref x : p.getDataNodeXrefs()) {
-					Set<Xref> res = mapper.mapID(x, dsEn);
-					for(Xref r : res) {
-						ids.add(r.getId());
-						String la = "";
-						if(!map.containsKey(r.getId())) {
-							Set<Xref> res2 = mapper.mapID(r, dsHGNC);
-							if(res2.size() > 0) {
-								la = res2.iterator().next().getId();
-								map.put(r.getId(), la);
-							}
-						} else {
-							la = map.get(r.getId());
-						}
-					}
-				}
-				for(String id : ids) {
-					writer.write(t.getPathway().getId() + "\t" + t.getPathway().getName() + "\t" + id + "\t" + ((map.get(id) == null) ? "" : map.get(id)) + "\n");
-				}
+				list.add(t.getPathway());
 			}
 		}
-		writer.close();
+		return list;
 	}
 }
