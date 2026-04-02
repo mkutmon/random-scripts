@@ -18,7 +18,7 @@ public class OneToOneMapper {
 
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException, IDMapperException {
-		// list of system codes: http://www.bridgedb.org/browser/trunk/org.bridgedb.bio/resources/org/bridgedb/bio/datasources.txt
+		// list of system codes: https://github.com/bridgedb/BridgeDb/blob/master/org.bridgedb.bio/src/main/resources/org/bridgedb/bio/datasources.tsv
 		
 		// define input sys code
 		String sysCodeIn = "S";
